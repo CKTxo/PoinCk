@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ระบบสะสมแต้ม</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-light">
+  <div class="container py-5">
+    <h2 class="mb-4 text-center">ระบบสะสมแต้มลูกค้า</h2>
+
+    <!-- Search -->
+    <input type="text" id="searchInput" class="form-control mb-3" placeholder="ค้นหาชื่อลูกค้า..." />
+
+    <!-- Add form -->
+    <form id="addForm" class="row g-2 mb-4">
+      <div class="col-md-4">
+        <input type="text" class="form-control" id="name" placeholder="ชื่อลูกค้า" required />
+      </div>
+      <div class="col-md-3">
+        <input type="number" class="form-control" id="bottles" placeholder="จำนวนขวด" min="1" required />
+      </div>
+      <div class="col-md-3">
+        <input type="number" class="form-control" id="price" placeholder="ราคาสั่งซื้อ" min="0" required />
+      </div>
+      <div class="col-md-2">
+        <button type="submit" class="btn btn-success w-100">เพิ่มข้อมูล</button>
+      </div>
+    </form>
+
+    <!-- Table -->
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover">
+        <thead class="table-dark text-center">
+          <tr>
+            <th>ชื่อลูกค้า</th>
+            <th>จำนวนขวด</th>
+            <th>แถม</th>
+            <th>ยอดสั่งซื้อ (บาท)</th>
+            <th>จัดการ</th>
+          </tr>
+        </thead>
+        <tbody id="customerTable"></tbody>
+      </table>
+            </tbody>
+    </table>
+    <!-- Pagination -->
+    <nav>
+      <ul class="pagination justify-content-center" id="pagination"></ul>
+    </nav>
+
+    <!-- Summary -->
+    <div class="text-end mt-3 fw-bold">
+      รวมขวดทั้งหมด: <span id="totalBottles">0</span> | 
+      รวมขวดแถม: <span id="totalBonus">0</span>
+    </div>
+
+    </div>
+  </div>
+
+  <!-- Edit Modal -->
+  <div class="modal fade" id="editModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form id="editForm">
+          <div class="modal-header">
+            <h5 class="modal-title">แก้ไขข้อมูลลูกค้า</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <input type="hidden" id="editIndex" />
+            <div class="mb-3">
+              <label class="form-label">ชื่อลูกค้า</label>
+              <input type="text" class="form-control" id="editName" required readonly />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">จำนวนขวด</label>
+              <input type="number" class="form-control" id="editBottles" min="1" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">ยอดสั่งซื้อ</label>
+              <input type="number" class="form-control" id="editPrice" min="0" required />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">บันทึก</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
